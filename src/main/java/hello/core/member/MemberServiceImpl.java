@@ -5,8 +5,11 @@ package hello.core.member;
 public class MemberServiceImpl implements MemberService {
 
     // 추상화(MemberRepository)에도 의존하고 구체화(MemoryMemberRepository)에도 의존하게 된다. DIP 위반
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
 
+    public MemberServiceImpl(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     @Override
     public void join(Member member) {

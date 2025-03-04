@@ -1,11 +1,20 @@
 package hello.core.member;
 
+import hello.core.AppConfig;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class MemberServiceTest {
+    MemberService memberService;
 
-    MemberService memberService = new MemberServiceImpl();
+    // Test를 실행하기 전에 실행된다.
+    // @Test가 두 개가 있다면 각각 두 번 돌아간다.
+    @BeforeEach
+    public void beforeEach(){
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+    }
 
     @Test
     void join(){
